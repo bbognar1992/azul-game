@@ -21,32 +21,12 @@ int getNumberOfPlayers(){
   return players;
 }
 
-int getNumberOfPuks(int n_players){
-  int puks = 0;
-  switch (n_players){
-      case 1: puks=5;
-      case 2: ; break;
-      case 3: puks=7; break;
-      default: puks=9;
-  };
-  return puks;
-}
-
-int init(int* n_players, int* n_puks){
-  *n_players = getNumberOfPlayers();
-  *n_puks = getNumberOfPuks(*n_players);
-  cout << "---------------------------------------\n";
-  cout << "Number of Players: " << *n_players << "\n";
-  cout << "Number of Puks: " << *n_puks << "\n";
-  cout << "---------------------------------------\n";
-  return 0;
-}
-
 int main() {
-  int n_players = 0;
-  int n_puks = 0;
+  int nPlayers = getNumberOfPlayers();
 
-  init(&n_players, &n_puks);
+  Game g = new Game(nPlayers);
+  g.play();
+  g.pack();
 
   return 0;
 }

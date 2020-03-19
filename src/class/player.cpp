@@ -16,6 +16,6 @@ class Player
 
   public:
   int getPoint();
-  int addTileToSampleTiles(int tile_type, int row);
-  int fillWallFromSamples(int* rest_of_tiles);
+  int putTileToSampleTiles(int** disks, int* freeTiles);
+  int putSamplesToWall(int* rest_of_tiles);
 };
