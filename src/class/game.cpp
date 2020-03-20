@@ -1,60 +1,23 @@
 #include <iostream>
 #include <string>
 
-#define n_tile 100
-#define n_tile_type (n_tile/5)
-
 using namespace std;
 
 class Game
 {
   private:
   std::vector<Player> players
-  std::vector<int> bag;
-  std::vector< std::vector<int> > disks;
-  std::vector<int> freeTiles;
-  std::vector<int> restTiles;
+  Table table;
 
-  int getNumberOfDisks(int n_players){
-    int puks = 0;
-    switch (n_players){
-        case 1: disks=5;
-        case 2: ; break;
-        case 3: disks=7; break;
-        default: disks=9;
-    };
-    return disks;
-  }
-
-  int fillBag();
-
-  int fillPuks();
-
-  int crateTable();
-
-  public:
-  void Game(int nPlayers=2){
-    players.resize(nPlayers);
+  void setPlayers(int nPlayers){
+    this.players.resize(nPlayers);
 
     string inputString;
     for(int i=0; i<nPlayers; i++){
       cout << "Mi a neved?\n";
       cin >> inputString;
-      player.insert(i, Player(inputString));
+      this.player.insert(i, Player(inputString));
     }
-    player.push_back()
-
-    bag.resize(n_tile+1);
-    freeTiles.resize(n_tile+1);
-    restTiles.resize(n_tile+1);
-    //init disks
-    int nDisks = getNumberOfDisks(nPlayers), diskSize = 4;
-    disks.resize(nDisks);
-    for(int i = 0 ; i < nDisks ; ++i)
-    {
-        disks[i].resize(diskSize);
-    }
-
   }
 
   int hasAnyoneFilledFirstRow(){
@@ -66,28 +29,29 @@ class Game
     return false;
   }
 
-  int isThereAnyTilesOnTheTable();
-
-  int prepareRound();
-
-  void showTheWinner();
-
   bool nextRound(){
-      prepareRound();
+      this.table.prepare();
       int i=0
       do{
           //játékos választ csempét.
-          this->players[i%this.players.size].putTileToSampleTiles(&this.disks, &this.freeTiles);
+          this->players[i%this.players.size].chooseTile(&this.table);
           i++;
         }
       }
-      while(isThereAnyTilesOnTheTable())
+      while(this.table.isEmpty())
       //a játékosok minta csempéiket felrakják a fallra és új pontokat hozzáadják a pontjaikhoz
       for(int i=0; i<this.players.size; i++){
         this.players[i].putSamplesToWall(&this.restTiles);
       }
       //Vége van a játéknak?
       return hasAnyoneFilledFirstRow();
+  }
+
+  public:
+
+  void Game(int nPlayers=2){
+    setPlayers(nPlayers);
+    this.talbe = Table(nPlayers);
   }
 
   int play(){
@@ -99,9 +63,13 @@ class Game
     }
     while(gameOver)
 
-    showTheWinner();
-
     return 0;
+  }
+
+  void showStat(){
+    for(int i=0; i<this.players.size; i++){
+      cout << this.player[i].getName() << ": " << this.player[i].getPoint << "\n";
+    }
   }
 
   int pack(){

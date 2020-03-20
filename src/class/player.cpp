@@ -33,10 +33,16 @@ class Player
     for (i = 0; i <= 5; i++)
         this.floorTiles[i] = 0;
   }
+
   int getPoint(){
     return this.points;
   }
-  int putTileToSampleTiles(int** disks, int* freeTiles){
+
+  int getName(){
+    return this.name;
+  }
+
+  int chooseTile(Table* table){
     int input;
     firstQuestion:
     cout << this.name << ": Do you want to choose from disk[0] or centre[1]?\n"
@@ -54,7 +60,6 @@ class Player
     else{
       goto firstQuestion;
     }
-
 
   }
   int putSamplesToWall(int* freeTiles){
