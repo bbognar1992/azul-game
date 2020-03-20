@@ -11,9 +11,6 @@
 #include <string>
 using namespace std;
 
-#define n_tile 100
-#define n_tile_type (n_tile/5)
-
 int getNumberOfPlayers(){
   int players=0;
   cout <<"Add meg a jatekosok szamat!\n";

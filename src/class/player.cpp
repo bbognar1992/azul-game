@@ -60,4 +60,6 @@ class Player
   int putSamplesToWall(int* freeTiles){
 
   }
+
+  bool isFirtRowFilled();
 };

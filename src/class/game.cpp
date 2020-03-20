@@ -1,21 +1,19 @@
 #include <iostream>
 #include <string>
 
+#define n_tile 100
+#define n_tile_type (n_tile/5)
+
 using namespace std;
 
 class Game
 {
   private:
-  int nPlayers;
-  int nDisks;
-
-  Player* players;
-
-  int* bag;
-  int* restTiles;
-
-  int** disks;
-  int* freeTiles;
+  std::vector<Player> players
+  std::vector<int> bag;
+  std::vector< std::vector<int> > disks;
+  std::vector<int> freeTiles;
+  std::vector<int> restTiles;
 
   int getNumberOfDisks(int n_players){
     int puks = 0;
@@ -29,20 +27,44 @@ class Game
   }
 
   int fillBag();
+
   int fillPuks();
 
   int crateTable();
 
   public:
   void Game(int nPlayers=2){
-    this.nPlayers = nPlayers;
-    this.nDisks = getNumberOfDisks(nPlayers);
-    this.players = (players*) malloc (this.nPlayers+1);
+    players.resize(nPlayers);
 
-    //create disk, bags ..
+    string inputString;
+    for(int i=0; i<nPlayers; i++){
+      cout << "Mi a neved?\n";
+      cin >> inputString;
+      player.insert(i, Player(inputString));
+    }
+    player.push_back()
+
+    bag.resize(n_tile+1);
+    freeTiles.resize(n_tile+1);
+    restTiles.resize(n_tile+1);
+    //init disks
+    int nDisks = getNumberOfDisks(nPlayers), diskSize = 4;
+    disks.resize(nDisks);
+    for(int i = 0 ; i < nDisks ; ++i)
+    {
+        disks[i].resize(diskSize);
+    }
+
   }
 
-  int hasAnyoneFilledFirstRow();
+  int hasAnyoneFilledFirstRow(){
+    for(int i=0; i<this.players.size; i++){
+      if(this.players[i].isFirtRowFilled()){
+        return true;
+      }
+    }
+    return false;
+  }
 
   int isThereAnyTilesOnTheTable();
 
@@ -55,14 +77,14 @@ class Game
       int i=0
       do{
           //játékos választ csempét.
-          this->players[i%this.nPlayers].putTileToSampleTiles(this.disks, this.freeTiles);
+          this->players[i%this.players.size].putTileToSampleTiles(&this.disks, &this.freeTiles);
           i++;
         }
       }
       while(isThereAnyTilesOnTheTable())
       //a játékosok minta csempéiket felrakják a fallra és új pontokat hozzáadják a pontjaikhoz
-      for(int i=0; i<this.nPlayers; i++){
-        this->players[i].putSamplesToWall(this.restTiles);
+      for(int i=0; i<this.players.size; i++){
+        this.players[i].putSamplesToWall(&this.restTiles);
       }
       //Vége van a játéknak?
       return hasAnyoneFilledFirstRow();
@@ -83,7 +105,7 @@ class Game
   }
 
   int pack(){
-    free (players);
+    delete [] players
   }
 
 };
