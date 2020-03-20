@@ -26,57 +26,81 @@ class Table
     }
 
     void initAndFillBag(){
-      this.bag.resize(n_tile+1);
+      this->bag.resize(n_tile+1);
       for(int i=0; i< n_tile; i++){
         char letter = 65+i%5;
-        this.bag.push_back(letter);
+        this->bag.push_back(letter);
       }
       char specialTile = 90;
-      this.bag.push_back(specialTile);
+      this->bag.push_back(specialTile);
     }
 
   public:
     void Table(int nPlayers){
       initAndFillBag();
-      this.freeTiles.resize(n_tile+1);
-      this.restTiles.resize(n_tile+1);
+      this->freeTiles.resize(n_tile+1);
+      this->restTiles.resize(n_tile+1);
       //init disks
       int nDisks = getNumberOfDisks(nPlayers), diskSize = 4;
-      this.disks.resize(nDisks);
+      this->disks.resize(nDisks);
       for(int i = 0 ; i < nDisks ; i++){
-          this.disks[i].resize(diskSize);
+          this->disks[i].resize(diskSize);
       }
     }
 
     int isEmpty(){
       //are disks clear?
-      for(int i=0; i<this.disks.size; i++){
-        if(!disks[i].empty) return false;
+      for(int i=0; i<this->disks.size; i++){
+        if(!this->disks[i].empty) return false;
       }
       //are centre clear?
-      if(!this.freeTiles.empty) return false;
+      if(!this->freeTiles.empty) return false;
 
       return true;
     }
 
     int prepare(){
-
       //fill bag
-      for(int i = 0 ; i < this.restTiles.size ; ++i)
+      for(int i = 0 ; i < this->restTiles.size ; ++i)
       {
-          this.bag.push_back(this.restTiles.pop_back())
-      }
-
-      //fill disks
-      for(int i = 0 ; i < this.disks.size ; i++){
-        for(int j = 0 ; j < 4 ; j++){
-            this.disks[i].push_back(this.bag.pop_back())
-        }
+          this->bag.push_back(this->restTiles.pop_back());
       }
 
       //find z and push to centre
+      this->bag.erase(std::find(this->bag.begin(),this->bag.end(),'Z'));
+      freeTiles.push_back('Z');
+
+      //fill disks
+      for(int i = 0 ; i < this->disks.size ; i++){
+        for(int j = 0 ; j < 4 ; j++){
+          char tile = this->bag.pop_back();
+          this->disks[i].push_back();
+        }
+      }
 
     }
 
+    void show(){
+      for(int i = 0 ; i < this->disks.size ; i++){
+        std::cout << i << '.' << ' ';
+      }
+      std::cout << '\n'
+
+      for(int i = 0 ; i < this->disks.size ; i++){
+        std::cout << this->disks[i][0] << this->disks[i][0] << ' ';
+      }
+      std::cout << '\n'
+
+      for(int i = 0 ; i < this->disks.size ; i++){
+        std::cout << this->disks[i][2] << this->disks[i][3] << ' ';
+      }
+      std::cout << '\n\n'
+
+      for(int i = 0 ; i < this->freeTiles.size ; i++){
+        std::cout << this->freeTiles[i] << ' ';
+      }
+      std::cout << '\n\n'
+
+    }
 
 }

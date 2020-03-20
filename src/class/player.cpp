@@ -14,44 +14,44 @@ class Player
   int[7] floorTiles;
 
   void addPoints(int newPoints){
-    this.points+=newPoints;
+    this->points+=newPoints;
   }
 
   public:
   void Player(string name){
-    this.name = name;
-    this.points = 0;
+    this->name = name;
+    this->points = 0;
     int i,j;
     for (i = 0; i <= 5; i++)
          for (j = 0; j < = 5; j++)
-            this.wallTiles[i][j] = 0;
+            this->wallTiles[i][j] = 0;
 
     for (i = 0; i <= 5; i++)
         for (j = 0; j < = 2; j++)
-            this.sampleTiles[i][j] = 0;
+            this->sampleTiles[i][j] = 0;
 
     for (i = 0; i <= 5; i++)
-        this.floorTiles[i] = 0;
+        this->floorTiles[i] = 0;
   }
 
   int getPoint(){
-    return this.points;
+    return this->points;
   }
 
   int getName(){
-    return this.name;
+    return this->name;
   }
 
   int chooseTile(Table* table){
     int input;
     firstQuestion:
-    cout << this.name << ": Do you want to choose from disk[0] or centre[1]?\n"
+    cout << this->name << ": Do you want to choose from disk[0] or centre[1]?\n"
     cin>>input;
 
     if(input==0){
-      cout << this.name << ": Which disk?\n"
+      cout << this->name << ": Which disk?\n"
       cin>>input;
-      cout << this.name << ": Which tiles?\n"
+      cout << this->name << ": Which tiles?\n"
       cin>>input;
     }
     else if(input==1){
@@ -62,9 +62,12 @@ class Player
     }
 
   }
-  int putSamplesToWall(int* freeTiles){
+
+  void show();
+
+  int updateWall(Table* table){
 
   }
 
-  bool isFirtRowFilled();
+  bool isWallFirstRowFilled();
 };

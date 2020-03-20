@@ -21,9 +21,9 @@ int getNumberOfPlayers(){
 int main() {
   int nPlayers = getNumberOfPlayers();
 
-  Game g = new Game(nPlayers);
-  g.play();
-  g.pack();
+  Game gm(nPlayers);
+  gm.play();
+  gm.showStats();
 
   return 0;
 }
