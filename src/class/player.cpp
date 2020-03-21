@@ -47,14 +47,14 @@ Player::Player(const Player &p){
   int i,j;
   for (i = 0; i < 5; i++)
        for (j = 0; j < 5; j++)
-          this->wallTiles[i][j] = 0;
+          this->wallTiles[i][j] = p.wallTiles[i][j];
 
   for (i = 0; i < 5; i++)
       for (j = 0; j < 2; j++)
-          this->sampleTiles[i][j] = 0;
+          this->sampleTiles[i][j] = p.sampleTiles[i][j];
 
   for (i = 0; i < 5; i++)
-      this->floorTiles[i] = 0;
+      this->floorTiles[i] = p.sampleTiles[i][j];
 }
 
 int Player::getPoint(){
