@@ -1,19 +1,24 @@
+#ifndef TABLE_H
+#define TABLE_H
+#include "Table.h"
+#endif
+
 class Player
 {
   private:
   string name;
   int points;
 
-  int[5][5] wallTiles;
-  int[5][2] sampleTiles; //típus és darab
-  int[7] floorTiles;
+  int wallTiles[5][5];
+  int sampleTiles[5][2]; //típus és darab
+  int floorTiles[7];
 
   void addPoints(int newPoints);
 
   public:
-  void Player(string name);
+  Player(string name);
   int getPoint();
-  inputString getName();
+  string getName();
   char chooseTile(Table* table);
   void show();
   void updateWall(Table* table);

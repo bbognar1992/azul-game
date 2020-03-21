@@ -1,8 +1,20 @@
+using namespace std;
+
+#ifndef PLAYER_H
+#define PLAYER_H
+#include "Player.h"
+#endif
+
+#ifndef TABLE_H
+#define TABLE_H
+#include "Table.h"
+#endif
+
 class Game
 {
   private:
 
-  std::vector<Player> players
+  std::vector<Player> players;
   Table table;
 
   void setPlayers(int nPlayers);
@@ -10,8 +22,8 @@ class Game
   bool nextRound();
 
   public:
-    
-  void Game(int nPlayers=2);
+
+  Game(int nPlayers=2);
   void play();
   void showStats();
 

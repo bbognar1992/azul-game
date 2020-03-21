@@ -1,6 +1,10 @@
-#include "game.h"
 #include <iostream>
 #include <string>
+
+#ifndef GAME_H
+#define GAME_H
+#include "Game.h"
+#endif
 
 using namespace std;
 
@@ -46,7 +50,7 @@ bool Game::nextRound(){
     return hasAnyoneFilledFirstRow();
 }
 
-void Game::Game(int nPlayers=2){
+Game::Game(int nPlayers=2){
   setPlayers(nPlayers);
   this->table = Table(nPlayers);
 }

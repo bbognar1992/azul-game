@@ -1,6 +1,10 @@
-#include "player.h"
 #include <iostream>
 #include <string>
+
+#ifndef PLAYER_H
+#define PLAYER_H
+#include "Player.h"
+#endif
 
 using namespace std;
 
@@ -8,7 +12,7 @@ void Player::addPoints(int newPoints){
   this->points+=newPoints;
 }
 
-void Player::Player(string name){
+Player::Player(string name){
   this->name = name;
   this->points = 0;
   int i,j;

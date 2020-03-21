@@ -1,6 +1,10 @@
-#include "table.h"
 #include <iostream>
 #include <string>
+
+#ifndef TABLE_H
+#define TABLE_H
+#include "Table.h"
+#endif
 
 #define n_tile 100
 #define n_tile_type (n_tile/5)
@@ -28,7 +32,7 @@ void Table::initAndFillBag(){
   this->bag.push_back(specialTile);
 }
 
-void Table::Table(int nPlayers){
+Table::Table(int nPlayers){
   initAndFillBag();
   this->freeTiles.resize(n_tile+1);
   this->restTiles.resize(n_tile+1);
