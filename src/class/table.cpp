@@ -1,12 +1,14 @@
-using namespace std;
-
 #include "Table.h"
+
+#include <iostream>
+
+using namespace std;
 
 #define n_tile 100
 #define n_tile_type (n_tile/5)
 
 int Table::getNumberOfDisks(int n_players){
-  int puks = 0;
+  int disks = 0;
   switch (n_players){
       case 1: disks=5;
       case 2: ; break;
@@ -40,55 +42,58 @@ Table::Table(int nPlayers){
 
 bool Table::isEmpty(){
   //are disks clear?
-  for(int i=0; i<this->disks.size; i++){
-    if(!this->disks[i].empty) return false;
+  for(int i=0; i<this->disks.size(); i++){
+    if(!this->disks[i].empty()) return false;
   }
   //are centre clear?
-  if(!this->freeTiles.empty) return false;
+  if(!this->freeTiles.empty()) return false;
 
   return true;
 }
 
 void Table::prepare(){
   //fill bag
-  for(int i = 0 ; i < this->restTiles.size ; ++i)
+  for(int i = 0 ; i < this->restTiles.size() ; ++i)
   {
-      this->bag.push_back(this->restTiles.pop_back());
+      int lastElem = this->restTiles.back();
+      this->restTiles.pop_back();
+      this->bag.push_back(lastElem);
   }
 
   //find z and push to centre
-  this->bag.erase(std::find(this->bag.begin(),this->bag.end(),'Z'));
-  freeTiles.push_back('Z');
+  this->bag.erase(std::find(this->bag.begin(),this->bag.end(),90));
+  freeTiles.push_back(90);
 
   //fill disks
-  for(int i = 0 ; i < this->disks.size ; i++){
+  for(int i = 0 ; i < this->disks.size() ; i++){
     for(int j = 0 ; j < 4 ; j++){
-      char tile = this->bag.pop_back();
-      this->disks[i].push_back();
+      char tile = this->bag.back();
+      this->bag.pop_back();
+      this->disks[i].push_back(tile);
     }
   }
 
 }
 
 void Table::show(){
-  for(int i = 0 ; i < this->disks.size ; i++){
+  for(int i = 0 ; i < this->disks.size() ; i++){
     std::cout << i << '.' << ' ';
   }
-  std::cout << '\n'
+  std::cout << '\n';
 
-  for(int i = 0 ; i < this->disks.size ; i++){
+  for(int i = 0 ; i < this->disks.size(); i++){
     std::cout << this->disks[i][0] << this->disks[i][0] << ' ';
   }
-  std::cout << '\n'
+  std::cout << '\n';
 
-  for(int i = 0 ; i < this->disks.size ; i++){
+  for(int i = 0 ; i < this->disks.size() ; i++){
     std::cout << this->disks[i][2] << this->disks[i][3] << ' ';
   }
-  std::cout << '\n\n'
+  std::cout << "\n\n";
 
-  for(int i = 0 ; i < this->freeTiles.size ; i++){
+  for(int i = 0 ; i < this->freeTiles.size() ; i++){
     std::cout << this->freeTiles[i] << ' ';
   }
-  std::cout << '\n\n'
+  std::cout << "\n\n";
 
 }

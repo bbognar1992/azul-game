@@ -1,7 +1,9 @@
-using namespace std;
-
 #include "Player.h"
 #include "Table.h"
+
+#include <iostream>
+
+using namespace std;
 
 void Player::addPoints(int newPoints){
   this->points+=newPoints;
@@ -11,15 +13,15 @@ Player::Player(string name){
   this->name = name;
   this->points = 0;
   int i,j;
-  for (i = 0; i <= 5; i++)
-       for (j = 0; j < = 5; j++)
+  for (i = 0; i < 5; i++)
+       for (j = 0; j < 5; j++)
           this->wallTiles[i][j] = 0;
 
-  for (i = 0; i <= 5; i++)
-      for (j = 0; j < = 2; j++)
+  for (i = 0; i < 5; i++)
+      for (j = 0; j < 2; j++)
           this->sampleTiles[i][j] = 0;
 
-  for (i = 0; i <= 5; i++)
+  for (i = 0; i < 5; i++)
       this->floorTiles[i] = 0;
 }
 
@@ -34,30 +36,30 @@ string Player::getName(){
 char Player::chooseTile(Table* table){
   int input;
   firstQuestion:
-  cout << this->name << ": Do you want to choose from disk[0] or centre[1]?\n"
-  cin>>input;
+  std::cout << this->name << ": Do you want to choose from disk[0] or centre[1]?\n";
+  std::cin>>input;
 
   if(input==0){
-    cout << this->name << ": Which disk?\n"
-    cin>>input;
-    cout << this->name << ": Which tiles?\n"
-    cin>>input;
+    std::cout << this->name << ": Which disk?\n";
+    std::cin>>input;
+    std::cout << this->name << ": Which tiles?\n";
+    std::cin>>input;
   }
   else if(input==1){
 
   }
   else{
     goto firstQuestion;
-  }
+  };
 
 }
 
 void Player::show(){
-  cout << "TO DO \n";
+  std::cout << "TO DO \n";
 }
 
 void Player::updateWall(Table* table){
-  return 0;
+  std::cout << "Player.updateWall\n";
 }
 
 bool Player::isWallFirstRowFilled(){

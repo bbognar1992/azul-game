@@ -1,6 +1,6 @@
-using namespace std;
-
 #include "Table.h"
+
+#include <string>
 
 #ifndef PLAYER_H
 #define PLAYER_H
@@ -8,9 +8,8 @@ using namespace std;
 class Player
 {
   private:
-  string name;
+  std::string name;
   int points;
-
   int wallTiles[5][5];
   int sampleTiles[5][2]; //típus és darab
   int floorTiles[7];
@@ -18,9 +17,9 @@ class Player
   void addPoints(int newPoints);
 
   public:
-  Player(string name);
+  Player(std::string name);
   int getPoint();
-  string getName();
+  std::string getName();
   char chooseTile(Table* table);
   void show();
   void updateWall(Table* table);

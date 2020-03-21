@@ -1,4 +1,4 @@
-using namespace std;
+#include <vector>
 
 #ifndef TABLE_H
 #define TABLE_H

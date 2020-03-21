@@ -1,20 +1,24 @@
-using namespace std;
-
 #include "Game.h"
+
+#include <iostream>
+
+using namespace std;
 
 void Game::setPlayers(int nPlayers){
   this->players.resize(nPlayers);
 
+  std::vector<Player>::iterator it;
+  it = this->players.begin();
   string inputString;
   for(int i=0; i<nPlayers; i++){
     cout << "Mi a neved?\n";
     cin >> inputString;
-    this->players.insert(i, Player(inputString));
+    this->players.insert ( it+1 , Player(inputString) );
   }
 }
 
 bool Game::hasAnyoneFilledFirstRow(){
-  for(int i=0; i<this->players.size; i++){
+  for(int i=0; i<this->players.size(); i++){
     if(this->players[i].isWallFirstRowFilled()){
       return true;
     }
@@ -23,30 +27,29 @@ bool Game::hasAnyoneFilledFirstRow(){
 }
 
 bool Game::nextRound(){
-    this->table.prepare();
-    int i=0
+    this->table->prepare();
+    int i=0;
     do{
-        int playerIndex = i%this->players.size;
-        this->table.show();
+        int playerIndex = i%this->players.size();
+        this->table->show();
         this->players[playerIndex].show();
-        this->players[playerIndex].chooseTile(&(this->table));
+        this->players[playerIndex].chooseTile(this->table);
         system("CLS");
 
         i++;
-      }
     }
-    while(this.table.isEmpty())
-    //a játékosok minta csempéiket felrakják a fallra és új pontokat hozzáadják a pontjaikhoz
-    for(int i=0; i<this->players.size; i++){
-      this->players[i].updateWall(&(this->table));
-    }
-    //Vége van a játéknak?
+    while(this->table->isEmpty());
+
+    for(int i=0; i<this->players.size(); i++){
+      this->players[i].updateWall(this->table);
+    };
+
     return hasAnyoneFilledFirstRow();
 }
 
-Game::Game(int nPlayers=2){
+Game::Game(int nPlayers){
   setPlayers(nPlayers);
-  this->table = Table(nPlayers);
+  this->table = new Table(nPlayers);
 }
 
 void Game::play(){
@@ -56,11 +59,11 @@ void Game::play(){
     gameOver = nextRound();
     round++;
   }
-  while(gameOver)
+  while(gameOver);
 }
 
 void Game::showStats(){
-  for(int i=0; i<this->players.size; i++){
-    cout << this->player[i].getName() << ": " << this->player[i].getPoint << "\n";
+  for(int i=0; i<this->players.size(); i++){
+    cout << this->players[i].getName() << ": " << this->players[i].getPoint() << "\n";
   }
 }
