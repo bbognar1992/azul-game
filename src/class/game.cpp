@@ -49,7 +49,9 @@ bool Game::nextRound(){
 
 Game::Game(int nPlayers){
   setPlayers(nPlayers);
+  std::cout << "Players created" << '\n';
   this->table = new Table(nPlayers);
+  std::cout << "Table created" << '\n';
 }
 
 void Game::play(){

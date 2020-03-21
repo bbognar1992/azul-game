@@ -1,6 +1,7 @@
 #include "Table.h"
 
 #include <string>
+#include <vector>
 
 #ifndef PLAYER_H
 #define PLAYER_H
@@ -10,9 +11,9 @@ class Player
   private:
   std::string name;
   int points;
-  int wallTiles[5][5];
-  int sampleTiles[5][2]; //típus és darab
-  int floorTiles[7];
+  std::vector< std::vector<int> > wallTiles;
+  std::vector< std::vector<int> > sampleTiles; //típus és darab
+  std::vector<int> floorTiles;
 
   void addPoints(int newPoints);
 

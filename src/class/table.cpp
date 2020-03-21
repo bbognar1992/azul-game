@@ -21,10 +21,10 @@ int Table::getNumberOfDisks(int n_players){
 void Table::initAndFillBag(){
   this->bag.resize(n_tile+1);
   for(int i=0; i< n_tile; i++){
-    char letter = 65+i%5;
-    this->bag.push_back(letter);
+    int tile = 65+i%5;
+    this->bag.push_back(tile);
   }
-  char specialTile = 90;
+  int specialTile = 90;
   this->bag.push_back(specialTile);
 }
 
@@ -67,7 +67,7 @@ void Table::prepare(){
   //fill disks
   for(int i = 0 ; i < this->disks.size() ; i++){
     for(int j = 0 ; j < 4 ; j++){
-      char tile = this->bag.back();
+      int tile = this->bag.back();
       this->bag.pop_back();
       this->disks[i].push_back(tile);
     }

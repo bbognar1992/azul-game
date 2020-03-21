@@ -7,10 +7,10 @@ class Table
 {
   private:
 
-  std::vector<char> bag;
-  std::vector< std::vector<char> > disks;
-  std::vector<char> freeTiles;
-  std::vector<char> restTiles;
+  std::vector<int> bag;
+  std::vector< std::vector<int> > disks;
+  std::vector<int> freeTiles;
+  std::vector<int> restTiles;
 
   int getNumberOfDisks(int n_players);
   void initAndFillBag();

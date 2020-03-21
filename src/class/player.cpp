@@ -12,49 +12,79 @@ void Player::addPoints(int newPoints){
 Player::Player(string name){
   this->name = name;
   this->points = 0;
+
   int i,j;
-  for (i = 0; i < 5; i++)
-       for (j = 0; j < 5; j++)
-          this->wallTiles[i][j] = 0;
+  this->wallTiles.resize(5);
+  for(int i = 0 ; i < this->wallTiles.size() ; i++){
+      this->wallTiles[i].resize(5);
+  }
+  this->sampleTiles.resize(5);
+  for(int i = 0 ; i < this->sampleTiles.size() ; i++){
+      this->sampleTiles[i].resize(2);
+  }
+  this->floorTiles.resize(7);
 
-  for (i = 0; i < 5; i++)
-      for (j = 0; j < 2; j++)
-          this->sampleTiles[i][j] = 0;
-
-  for (i = 0; i < 5; i++)
-      this->floorTiles[i] = 0;
+  for (i = 0; i < this->wallTiles.size(); i++)
+       for (j = 0; j < this->wallTiles[i].size(); j++)
+          this->wallTiles[i][j] = '-';
+  for (i = 0; i < this->sampleTiles.size(); i++){
+    this->sampleTiles[i][0] = '-';
+    this->sampleTiles[i][1] = 0;
+  }
+  for (i = 0; i < this->floorTiles.size(); i++)
+      this->floorTiles[i] = '-';
 }
 
 Player::Player(){
   this->name = "";
   this->points = 0;
+
   int i,j;
-  for (i = 0; i < 5; i++)
-       for (j = 0; j < 5; j++)
-          this->wallTiles[i][j] = 0;
+  this->wallTiles.resize(5);
+  for(int i = 0 ; i < this->wallTiles.size() ; i++){
+      this->wallTiles[i].resize(5);
+  }
+  this->sampleTiles.resize(5);
+  for(int i = 0 ; i < this->sampleTiles.size() ; i++){
+      this->sampleTiles[i].resize(2);
+  }
+  this->floorTiles.resize(7);
 
-  for (i = 0; i < 5; i++)
-      for (j = 0; j < 2; j++)
-          this->sampleTiles[i][j] = 0;
-
-  for (i = 0; i < 5; i++)
-      this->floorTiles[i] = 0;
+  for (i = 0; i < this->wallTiles.size(); i++)
+       for (j = 0; j < this->wallTiles[i].size(); j++)
+          this->wallTiles[i][j] = '-';
+  for (i = 0; i < this->sampleTiles.size(); i++){
+    this->sampleTiles[i][0] = '-';
+    this->sampleTiles[i][1] = 0;
+  }
+  for (i = 0; i < this->floorTiles.size(); i++)
+      this->floorTiles[i] = '-';
 }
 
 Player::Player(const Player &p){
   name=p.name;
   this->points = 0;
   int i,j;
-  for (i = 0; i < 5; i++)
-       for (j = 0; j < 5; j++)
+
+  this->wallTiles.resize(5);
+  for(int i = 0 ; i < this->wallTiles.size() ; i++){
+      this->wallTiles[i].resize(5);
+  }
+  this->sampleTiles.resize(5);
+  for(int i = 0 ; i < this->sampleTiles.size() ; i++){
+      this->sampleTiles[i].resize(2);
+  }
+  this->floorTiles.resize(7);
+
+  for (i = 0; i < this->wallTiles.size(); i++)
+       for (j = 0; j < this->wallTiles[i].size(); j++)
           this->wallTiles[i][j] = p.wallTiles[i][j];
-
-  for (i = 0; i < 5; i++)
-      for (j = 0; j < 2; j++)
-          this->sampleTiles[i][j] = p.sampleTiles[i][j];
-
-  for (i = 0; i < 5; i++)
-      this->floorTiles[i] = p.sampleTiles[i][j];
+  for (i = 0; i < this->sampleTiles.size(); i++){
+    this->sampleTiles[i][0] = p.sampleTiles[i][0];
+    this->sampleTiles[i][1] = p.sampleTiles[i][1];
+  }
+  for (i = 0; i < this->floorTiles.size(); i++)
+      this->floorTiles[i] = p.floorTiles[i];
 }
 
 int Player::getPoint(){
