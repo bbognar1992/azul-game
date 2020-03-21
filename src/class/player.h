@@ -17,7 +17,9 @@ class Player
   void addPoints(int newPoints);
 
   public:
+  Player();
   Player(std::string name);
+  Player(const Player &p);
   int getPoint();
   std::string getName();
   char chooseTile(Table* table);

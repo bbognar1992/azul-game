@@ -25,6 +25,38 @@ Player::Player(string name){
       this->floorTiles[i] = 0;
 }
 
+Player::Player(){
+  this->name = "";
+  this->points = 0;
+  int i,j;
+  for (i = 0; i < 5; i++)
+       for (j = 0; j < 5; j++)
+          this->wallTiles[i][j] = 0;
+
+  for (i = 0; i < 5; i++)
+      for (j = 0; j < 2; j++)
+          this->sampleTiles[i][j] = 0;
+
+  for (i = 0; i < 5; i++)
+      this->floorTiles[i] = 0;
+}
+
+Player::Player(const Player &p){
+  name=p.name;
+  this->points = 0;
+  int i,j;
+  for (i = 0; i < 5; i++)
+       for (j = 0; j < 5; j++)
+          this->wallTiles[i][j] = 0;
+
+  for (i = 0; i < 5; i++)
+      for (j = 0; j < 2; j++)
+          this->sampleTiles[i][j] = 0;
+
+  for (i = 0; i < 5; i++)
+      this->floorTiles[i] = 0;
+}
+
 int Player::getPoint(){
   return this->points;
 }
@@ -51,7 +83,7 @@ char Player::chooseTile(Table* table){
   else{
     goto firstQuestion;
   };
-
+  return 'A';
 }
 
 void Player::show(){
