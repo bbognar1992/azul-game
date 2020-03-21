@@ -1,12 +1,7 @@
-#include <iostream>
-#include <string>
-
-#ifndef PLAYER_H
-#define PLAYER_H
-#include "Player.h"
-#endif
-
 using namespace std;
+
+#include "Player.h"
+#include "Table.h"
 
 void Player::addPoints(int newPoints){
   this->points+=newPoints;

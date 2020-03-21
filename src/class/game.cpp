@@ -1,12 +1,6 @@
-#include <iostream>
-#include <string>
-
-#ifndef GAME_H
-#define GAME_H
-#include "Game.h"
-#endif
-
 using namespace std;
+
+#include "Game.h"
 
 void Game::setPlayers(int nPlayers){
   this->players.resize(nPlayers);

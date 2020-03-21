@@ -1,15 +1,9 @@
-#include <iostream>
-#include <string>
+using namespace std;
 
-#ifndef TABLE_H
-#define TABLE_H
 #include "Table.h"
-#endif
 
 #define n_tile 100
 #define n_tile_type (n_tile/5)
-
-using namespace std;
 
 int Table::getNumberOfDisks(int n_players){
   int puks = 0;

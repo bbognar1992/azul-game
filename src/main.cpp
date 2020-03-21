@@ -8,22 +8,10 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <vector>
 #include <string>
 
-#ifndef GAME_H
-#define GAME_H
 #include "class/Game.h"
-#endif
-
-#ifndef PLAYER_H
-#define PLAYER_H
-#include "class/Player.h"
-#endif
-
-#ifndef TABLE_H
-#define TABLE_H
-#include "class/Table.h"
-#endif
 
 using namespace std;
 

@@ -1,7 +1,9 @@
-#ifndef TABLE_H
-#define TABLE_H
+using namespace std;
+
 #include "Table.h"
-#endif
+
+#ifndef PLAYER_H
+#define PLAYER_H
 
 class Player
 {
@@ -25,3 +27,5 @@ class Player
   bool isWallFirstRowFilled();
 
 };
+
+#endif

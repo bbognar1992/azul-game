@@ -1,14 +1,10 @@
 using namespace std;
 
-#ifndef PLAYER_H
-#define PLAYER_H
 #include "Player.h"
-#endif
-
-#ifndef TABLE_H
-#define TABLE_H
 #include "Table.h"
-#endif
+
+#ifndef GAME_H
+#define GAME_H
 
 class Game
 {
@@ -28,3 +24,5 @@ class Game
   void showStats();
 
 };
+
+#endif

@@ -1,6 +1,7 @@
-#include <vector>
-
 using namespace std;
+
+#ifndef TABLE_H
+#define TABLE_H
 
 class Table
 {
@@ -22,3 +23,5 @@ class Table
   void show();
 
 };
+
+#endif
