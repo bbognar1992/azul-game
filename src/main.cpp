@@ -9,6 +9,9 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
+
+#include "Game.h"
+
 using namespace std;
 
 int getNumberOfPlayers(){
