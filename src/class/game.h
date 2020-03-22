@@ -16,6 +16,7 @@ class Game
   void setPlayers(int nPlayers);
   bool hasAnyoneFilledFirstRow();
   bool nextRound();
+  void ClearScreen();
 
   public:
 

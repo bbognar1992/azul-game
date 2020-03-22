@@ -14,6 +14,10 @@ void Game::setPlayers(int nPlayers){
   }
 }
 
+void Game::ClearScreen(){
+  cout << string( 100, '\n' );
+}
+
 bool Game::hasAnyoneFilledFirstRow(){
   for(int i=0; i<this->players.size(); i++){
     if(this->players[i].isWallFirstRowFilled()){
@@ -27,11 +31,11 @@ bool Game::nextRound(){
     this->table->prepare();
     int i=0;
     do{
+        this->ClearScreen();
         int playerIndex = i%this->players.size();
         this->table->show();
         this->players[playerIndex].show();
         this->players[playerIndex].chooseTile(this->table);
-        system("CLS");
 
         i++;
     }

@@ -27,6 +27,11 @@ Player::Player(string name){
     vector<char> rows;
     this->sampleTiles.push_back(rows);
   }
+  for (i = 0; i < 5; i++){
+    for(j = 0; j < i+1; j++){
+      this->sampleTiles[i].push_back('-');
+    }
+  }
 }
 
 Player::Player(){
@@ -46,6 +51,11 @@ Player::Player(){
   for (i = 0; i < 5; i++){
     vector<char> rows;
     this->sampleTiles.push_back(rows);
+  }
+  for (i = 0; i < 5; i++){
+    for(j = 0; j < i+1; j++){
+      this->sampleTiles[i].push_back('-');
+    }
   }
 }
 
@@ -91,21 +101,41 @@ char Player::chooseTile(Table* table){
   std::cin>>input;
 
   if(input==0){
+    char tile_type;
     std::cout << this->name << ": Which disk?\n";
     std::cin>>input;
     std::cout << this->name << ": Which tiles?\n";
-    std::cin>>input;
+    std::cin>>tile_type;
+
+    //string simpleTiles=table.getDiskTiles(input, tile_type);
+
+
+
   }
   else if(input==1){
 
   }
   else{
+    std::cout << "Not Valid answer!\n";
     goto firstQuestion;
   };
   return 'A';
 }
 
 void Player::show(){
+  std::cout << "Player name: " << this->getName() <<'\n';
+  std::cout << "Points: " << this->getPoint() <<'\n';
+  std::cout << "1 2 3 4 5" << '\n';
+  for(int i=0; i< 5; i++){
+    for(int j=0; j< 5; j++){
+      std::cout << this->wallTiles[i][j] << " ";
+    }
+    std::cout << i+1 << " ";
+    for(int j=0; j< i+1; j++){
+      std::cout << this->sampleTiles[i][j] << " ";
+    }
+    std::cout <<"\n";
+  }
   std::cout << "TO DO \n";
 }
 
