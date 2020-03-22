@@ -10,8 +10,8 @@ using namespace std;
 int Table::getNumberOfDisks(int n_players){
   int disks = 0;
   switch (n_players){
-      case 1: disks=5;
-      case 2: ; break;
+      case 1: ;
+      case 2: disks=5; break;
       case 3: disks=7; break;
       default: disks=9;
   };
@@ -19,25 +19,17 @@ int Table::getNumberOfDisks(int n_players){
 }
 
 void Table::initAndFillBag(){
-  this->bag.resize(n_tile+1);
   for(int i=0; i< n_tile; i++){
-    int tile = 65+i%5;
+    char tile = 65+i%5;
     this->bag.push_back(tile);
   }
-  int specialTile = 90;
+  char specialTile = 90;
   this->bag.push_back(specialTile);
 }
 
 Table::Table(int nPlayers){
   initAndFillBag();
-  this->freeTiles.resize(n_tile+1);
-  this->restTiles.resize(n_tile+1);
-  //init disks
-  int nDisks = getNumberOfDisks(nPlayers), diskSize = 4;
-  this->disks.resize(nDisks);
-  for(int i = 0 ; i < nDisks ; i++){
-      this->disks[i].resize(diskSize);
-  }
+  this->nDisks = getNumberOfDisks(nPlayers);
 }
 
 bool Table::isEmpty(){
@@ -52,8 +44,10 @@ bool Table::isEmpty(){
 }
 
 void Table::prepare(){
+
+  int i;
   //fill bag
-  for(int i = 0 ; i < this->restTiles.size() ; ++i)
+  for(i = 0 ; i < this->restTiles.size() ; ++i)
   {
       int lastElem = this->restTiles.back();
       this->restTiles.pop_back();
@@ -63,14 +57,15 @@ void Table::prepare(){
   //find z and push to centre
   this->bag.erase(std::find(this->bag.begin(),this->bag.end(),90));
   freeTiles.push_back(90);
-
   //fill disks
-  for(int i = 0 ; i < this->disks.size() ; i++){
+  for(i = 0 ; i < this->nDisks; i++){
+    vector<char> disk;
     for(int j = 0 ; j < 4 ; j++){
-      int tile = this->bag.back();
+      char tile = this->bag.back();
       this->bag.pop_back();
-      this->disks[i].push_back(tile);
+      disk.push_back(tile);
     }
+    this->disks.push_back(disk);
   }
 
 }
@@ -89,11 +84,10 @@ void Table::show(){
   for(int i = 0 ; i < this->disks.size() ; i++){
     std::cout << this->disks[i][2] << this->disks[i][3] << ' ';
   }
-  std::cout << "\n\n";
+  std::cout << "\n-------------------------------\n";
 
   for(int i = 0 ; i < this->freeTiles.size() ; i++){
     std::cout << this->freeTiles[i] << ' ';
   }
-  std::cout << "\n\n";
-
+  std::cout << "\n-------------------------------\n\n";
 }

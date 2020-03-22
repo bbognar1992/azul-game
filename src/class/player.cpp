@@ -14,25 +14,19 @@ Player::Player(string name){
   this->points = 0;
 
   int i,j;
-  this->wallTiles.resize(5);
-  for(int i = 0 ; i < this->wallTiles.size() ; i++){
-      this->wallTiles[i].resize(5);
+  for (i = 0; i < 5; i++){
+    vector<char> columns;
+    this->wallTiles.push_back(columns);
   }
-  this->sampleTiles.resize(5);
-  for(int i = 0 ; i < this->sampleTiles.size() ; i++){
-      this->sampleTiles[i].resize(2);
+  for (i = 0; i < 5; i++){
+    for (j = 0; j < 5; j++){
+      this->wallTiles[i].push_back('-');
+    }
   }
-  this->floorTiles.resize(7);
-
-  for (i = 0; i < this->wallTiles.size(); i++)
-       for (j = 0; j < this->wallTiles[i].size(); j++)
-          this->wallTiles[i][j] = '-';
-  for (i = 0; i < this->sampleTiles.size(); i++){
-    this->sampleTiles[i][0] = '-';
-    this->sampleTiles[i][1] = 0;
+  for (i = 0; i < 5; i++){
+    vector<char> rows;
+    this->sampleTiles.push_back(rows);
   }
-  for (i = 0; i < this->floorTiles.size(); i++)
-      this->floorTiles[i] = '-';
 }
 
 Player::Player(){
@@ -40,50 +34,45 @@ Player::Player(){
   this->points = 0;
 
   int i,j;
-  this->wallTiles.resize(5);
-  for(int i = 0 ; i < this->wallTiles.size() ; i++){
-      this->wallTiles[i].resize(5);
+  for (i = 0; i < 5; i++){
+    vector<char> columns;
+    this->wallTiles.push_back(columns);
   }
-  this->sampleTiles.resize(5);
-  for(int i = 0 ; i < this->sampleTiles.size() ; i++){
-      this->sampleTiles[i].resize(2);
+  for (i = 0; i < 5; i++){
+    for (j = 0; j < 5; j++){
+      this->wallTiles[i].push_back('-');
+    }
   }
-  this->floorTiles.resize(7);
-
-  for (i = 0; i < this->wallTiles.size(); i++)
-       for (j = 0; j < this->wallTiles[i].size(); j++)
-          this->wallTiles[i][j] = '-';
-  for (i = 0; i < this->sampleTiles.size(); i++){
-    this->sampleTiles[i][0] = '-';
-    this->sampleTiles[i][1] = 0;
+  for (i = 0; i < 5; i++){
+    vector<char> rows;
+    this->sampleTiles.push_back(rows);
   }
-  for (i = 0; i < this->floorTiles.size(); i++)
-      this->floorTiles[i] = '-';
 }
 
 Player::Player(const Player &p){
   name=p.name;
-  this->points = 0;
+  this->points = p.points;
   int i,j;
+  for (i = 0; i < p.wallTiles.size(); i++){
+    vector<char> columns;
+    this->wallTiles.push_back(columns);
+  }
+  for (i = 0; i < p.wallTiles.size(); i++){
+    for (j = 0; j < p.wallTiles[i].size(); j++){
+      this->wallTiles[i].push_back(p.wallTiles[i][j]);
+    }
+  }
 
-  this->wallTiles.resize(5);
-  for(int i = 0 ; i < this->wallTiles.size() ; i++){
-      this->wallTiles[i].resize(5);
+  for (i = 0; i < p.sampleTiles.size(); i++){
+    vector<char> rows;
+    this->sampleTiles.push_back(rows);
   }
-  this->sampleTiles.resize(5);
-  for(int i = 0 ; i < this->sampleTiles.size() ; i++){
-      this->sampleTiles[i].resize(2);
+  for (i = 0; i < p.sampleTiles.size(); i++){
+    for (j = 0; j < p.sampleTiles[i].size(); j++){
+      this->sampleTiles[i].push_back(p.sampleTiles[i][j]);
+    }
   }
-  this->floorTiles.resize(7);
-
-  for (i = 0; i < this->wallTiles.size(); i++)
-       for (j = 0; j < this->wallTiles[i].size(); j++)
-          this->wallTiles[i][j] = p.wallTiles[i][j];
-  for (i = 0; i < this->sampleTiles.size(); i++){
-    this->sampleTiles[i][0] = p.sampleTiles[i][0];
-    this->sampleTiles[i][1] = p.sampleTiles[i][1];
-  }
-  for (i = 0; i < this->floorTiles.size(); i++)
+  for (i = 0; i < p.floorTiles.size(); i++)
       this->floorTiles[i] = p.floorTiles[i];
 }
 

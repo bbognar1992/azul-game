@@ -6,14 +6,11 @@ using namespace std;
 
 void Game::setPlayers(int nPlayers){
   this->players.resize(nPlayers);
-
-  std::vector<Player>::iterator it;
-  it = this->players.begin();
   string inputString;
   for(int i=0; i<nPlayers; i++){
     cout << "Mi a neved?\n";
     cin >> inputString;
-    this->players.insert ( it+1 , Player(inputString) );
+    this->players.push_back(Player(inputString));
   }
 }
 
@@ -49,9 +46,7 @@ bool Game::nextRound(){
 
 Game::Game(int nPlayers){
   setPlayers(nPlayers);
-  std::cout << "Players created" << '\n';
   this->table = new Table(nPlayers);
-  std::cout << "Table created" << '\n';
 }
 
 void Game::play(){

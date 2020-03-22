@@ -11,9 +11,9 @@ class Player
   private:
   std::string name;
   int points;
-  std::vector< std::vector<int> > wallTiles;
-  std::vector< std::vector<int> > sampleTiles; //típus és darab
-  std::vector<int> floorTiles;
+  std::vector< std::vector<char> > wallTiles;
+  std::vector< std::vector<char> > sampleTiles; //típus és darab
+  std::vector<char> floorTiles;
 
   void addPoints(int newPoints);
 
