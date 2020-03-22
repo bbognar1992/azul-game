@@ -55,8 +55,8 @@ void Table::prepare(){
   }
 
   //find z and push to centre
-  this->bag.erase(std::find(this->bag.begin(),this->bag.end(),90));
-  freeTiles.push_back(90);
+  this->bag.erase(std::find(this->bag.begin(),this->bag.end(),'Z'));
+  freeTiles.push_back('Z');
   //fill disks
   for(i = 0 ; i < this->nDisks; i++){
     vector<char> disk;
@@ -68,6 +68,30 @@ void Table::prepare(){
     this->disks.push_back(disk);
   }
 
+}
+
+std::vector<char> Table::getTiles(int diskNumber, char tile_type){
+  std::vector<char> tiles;
+  if(diskNumber==-1){
+    if(std::find(this->freeTiles.begin(),this->freeTiles.end(),tile_type)!=this->freeTiles.end()){
+      throw 1;
+    }
+    else{
+      for(int i=0; i< this->freeTiles.size(); i++){
+        vector<char>::iterator it = std::find(this->freeTiles.begin(),this->freeTiles.end(),tile_type);
+        this->freeTiles.erase(it);
+        tiles.push_back(tile_type);
+      }
+    }
+  }
+  else{
+    for(int i=0; i< 4; i++){
+      vector<char>::iterator it = std::find(this->freeTiles.begin(),this->freeTiles.end(),tile_type);
+      this->disks[diskNumber].erase(it);
+      tiles.push_back(tile_type);
+    }
+  }
+  return tiles;
 }
 
 void Table::show(){

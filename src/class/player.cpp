@@ -104,10 +104,10 @@ char Player::chooseTile(Table* table){
     char tile_type;
     std::cout << this->name << ": Which disk?\n";
     std::cin>>input;
-    std::cout << this->name << ": Which tiles?\n";
+    std::cout << this->name << ": Which tile type?\n";
     std::cin>>tile_type;
 
-    //string simpleTiles=table.getDiskTiles(input, tile_type);
+    std::vector<char> choosedTiles=table->getTiles(input, tile_type);
 
 
 
@@ -136,7 +136,6 @@ void Player::show(){
     }
     std::cout <<"\n";
   }
-  std::cout << "TO DO \n";
 }
 
 void Player::updateWall(Table* table){

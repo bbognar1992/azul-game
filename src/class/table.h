@@ -21,6 +21,7 @@ class Table
   bool isEmpty();
   void prepare();
   void show();
+  std::vector<char> getTiles(int diskNumber, char tile_type);
 
 };
 
